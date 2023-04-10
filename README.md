@@ -28,6 +28,14 @@ sw1-cardboard-box# show ip interface brief
 sw1-cardboard-box# show version
 ```
 
+```
+sw1-cardboard-box# show ip interface brief
+```
+- administratively down - shutdown
+- down/down - Layer 1 Issue
+- up/down - Layer 2 Issue or speed mismatch
+
+
 ## CDP (Cisco Discovery Protocol) & LLDP (Link Layer Discovery Protocol)
 ```
 sw1-cardboard-box (config)# cdp run
