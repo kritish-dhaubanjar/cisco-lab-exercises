@@ -19,3 +19,11 @@ sw1-cardboard-box (config)# interface FastEthernet 0/1
 sw1-cardboard-box (config-if)# duplex full
 sw1-cardboard-box (config-if)# speed 100
 ```
+
+## Verification
+```
+sw1-cardboard-box# show running-config
+sw1-cardboard-box# show interfaces
+sw1-cardboard-box# show ip interface brief
+sw1-cardboard-box# show version
+```
