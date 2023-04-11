@@ -94,5 +94,8 @@ rommon 7 > tftpdnld
 
 ![image](https://user-images.githubusercontent.com/25634165/231179446-2f627621-b01f-43ad-88e8-a5338651cf3c.png)
 
-
+### Factory Reset
+```
+write erase
+```
 
