@@ -171,3 +171,7 @@ RT: NET-RED 192.168.101.0/24
 
 R2#undebug all
 ```
+
+## Dynamic Routing Protocols
+![image](https://user-images.githubusercontent.com/25634165/231264821-70813062-7506-4970-a7e3-119a5fc7cb15.png)
+
