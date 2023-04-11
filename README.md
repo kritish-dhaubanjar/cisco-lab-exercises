@@ -55,3 +55,44 @@ sw1-cardboard-box# show lldp
 sw1-cardboard-box# show lldp neighbors
 sw1-cardboard-box# show lldp neighbors detail
 ```
+
+## [The Boot-up Process & Disaster Recovery with TFTP Download](https://www.cisco.com/en/US/docs/routers/access/800/850/software/configuration/guide/rommon.html)
+```
+R1# show flash:
+
+System flash directory:
+File  Length   Name/status
+  3   5571584  pt1000-i-mz.122-28.bin
+  2   28282    sigdef-category.xml
+  1   227537   sigdef-default.xml
+[5827403 bytes used, 58188981 available, 64016384 total]
+63488K bytes of processor board System flash (Read/Write)
+
+R1# copy flash tftp
+Source filename []? pt1000-i-mz.122-28.bin
+Address or name of remote host []? 10.10.10.254
+Destination filename [pt1000-i-mz.122-28.bin]? pt1000-i-mz.122-28.bin
+
+R1# delete flash:pt1000-i-mz.122-28.bin
+
+R1# reload
+...
+Boot process failed...
+
+The system is unable to boot automatically.  The BOOT
+environment variable needs to be set to a bootable
+image.
+
+rommon 1 >
+rommon 2 > IP_ADDRESS=10.10.10.1
+rommon 3 > IP_SUBNET_MASK=255.255.255.0
+rommon 4 > DEFAULT_GATEWAY=10.10.10.254
+rommon 5 > TFTP_SERVER=10.10.10.254
+rommon 6 > TFTP_FILE=pt1000-i-mz.122-28.bin
+rommon 7 > tftpdnld
+```
+
+![image](https://user-images.githubusercontent.com/25634165/231179446-2f627621-b01f-43ad-88e8-a5338651cf3c.png)
+
+
+
