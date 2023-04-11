@@ -106,3 +106,30 @@ confreg 0x2142
 1. 0x2102: boot normally (default)
 2. 0x2120: boot into rommon
 3. 0x2142: ignore NVRAM contents (startup-config)
+
+### Password Recovery
+```
+R1(config)# enable password <PASSWORD>
+R1(config)# enable secret <PASSWORD>
+R1(config)# do reload
+```
+
+Break the boot sequence [Ctrl+C] into rommon.
+```
+rommon 1 > confreg 0x2142
+rommon 2 > reset
+```
+
+Preserve the startup-config
+```
+Router# copy startup-config running-config
+Router# configure terminal
+Router(config)# enable password <PASSWORD>
+Router(config)# enable secret <PASSWORD>
+
+Router(config)# config-register 0x2102
+Router# copy running-config startup-config
+Router# reload
+```
+
+
