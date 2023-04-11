@@ -132,4 +132,17 @@ Router# copy running-config startup-config
 Router# reload
 ```
 
+## Summarisation, Longest Prefix Match, and Default Routes
+For R1:
+- Classful or Classless Boundaries
+- Longest Prefix will be selected if more than one route (eg: 255.255.255.0 over 255.0.0.0)
+- Load Balance between matching prefix
+- Default Gateway or Gateway of Last Resort
+
+```
+ip route 0.0.0.0 0.0.0.0 <Gateway_X.X.X.X>
+```
+
+![image](https://user-images.githubusercontent.com/25634165/231238732-d2e6dc33-8891-4ade-b02f-b859f421fa4d.png)
+
 
