@@ -99,3 +99,10 @@ rommon 7 > tftpdnld
 write erase
 ```
 
+### The Config Register (config-register/confreg)
+```
+confreg 0x2142
+```
+1. 0x2102: boot normally (default)
+2. 0x2120: boot into rommon
+3. 0x2142: ignore NVRAM contents (startup-config)
