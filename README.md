@@ -145,4 +145,29 @@ ip route 0.0.0.0 0.0.0.0 <Gateway_X.X.X.X>
 
 ![image](https://user-images.githubusercontent.com/25634165/231238732-d2e6dc33-8891-4ade-b02f-b859f421fa4d.png)
 
+## RIP
+![image](https://user-images.githubusercontent.com/25634165/231259982-01ffc0f4-08cc-4681-9036-b83bd0764992.png)
 
+```
+R3(config)# router rip
+R3(config-router)# no auto-summary
+R3(config-router)# version 2
+R3(config-router)# network 192.168.101.0
+R3(config-router)# network 10.0.1.0
+```
+
+In R2
+```
+R2# debug ip routing
+IP routing debugging is on
+
+RT: SET_LAST_RDB for 192.168.101.0/24
+
+    NEW rdb: via 10.0.1.1
+
+RT: add 192.168.101.0/24 via 10.0.1.1, rip metric [120/1]
+
+RT: NET-RED 192.168.101.0/24
+
+R2#undebug all
+```
