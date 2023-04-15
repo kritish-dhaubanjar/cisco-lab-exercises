@@ -204,5 +204,17 @@ Link ID         ADV Router      Age         Seq#       Checksum Link count
 R2#
 ```
 
+- OSPF Metric Cost = Interface Bandwidth (by default)
+- Can manually configure the cost of links to manipulate path
+- eg: 3 hop of 100 Mbps link each is preferred over 2 hop of 10 Mbps link each
 
+## IS-IS
+- IS-IS Metric Cost is not automatically derived from interface bandwidth. All links have an equal cost by default
+- Can manually configure the cost of links to manipulate path
+- If you don't manually set the cost of links, then path with the lowest hop count will be used.
 
+## EIGRP
+- EIGRP Metric Cost = Uses bandwidth + delay of links to calculate metric
+- (Load & reliability can also be considered but ignored by default)
+- A fixed delay value is used based on interface bandwidth, this protocol doesn't dynamically measure current delay
+- Can manually configure the delay of links to manipulate path
