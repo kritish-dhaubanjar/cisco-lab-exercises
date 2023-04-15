@@ -203,6 +203,15 @@ R2(config-if)# ip summary-address rip 10.0.0.0 255.255.0.0
 
 ![image](https://user-images.githubusercontent.com/25634165/232237317-1dc3339c-1ccf-4e53-bdfc-caf74e49cd6c.png)
 
+#### Default Route Injection
+Default Internet Gateway: 203.0.113.2
+
+```
+R4(config)# ip route 0.0.0.0 0.0.0.0 203.0.113.2
+R4(config)# router rip
+R4(config-router)# default-information originate
+```
+
 ## Dynamic Routing Protocols
 ![image](https://user-images.githubusercontent.com/25634165/231264821-70813062-7506-4970-a7e3-119a5fc7cb15.png)
 
