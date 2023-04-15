@@ -306,6 +306,20 @@ R1(config-router)# network 10.0.2.1 0.0.0.0
 - Automatically poerform equal cost load balancing on up to 4 paths by default, max 16 paths
 - EIGRP is the only routing protocol capable of UnEqual Cost Multi Path. It must be manually configured to support this.
 
+**EIGRP Router ID**
+- EIGRP routes identify themselves using an EIGRP Router ID (form of an ip address)
+- Default being the highest IP address of any loopback interfaces configures on router, ot the highest other IP address if loopback doesn't exist
+- Loopback interface never go down, so the Router ID will not change
+- Can manually specify Router ID
+- Best practice is to use a loopback or manually set
+
+```
+R1(config)# router eigrp 100
+R1(config-router)# eigrp router-id 2.2.2.2
+```
+
+2.2.2.2 is not an ip address, but just the format of ip address
+
 **Metric**
 - EIGRP Metric Cost = Uses bandwidth + delay of links to calculate metric
 - (Load & reliability can also be considered but ignored by default)
