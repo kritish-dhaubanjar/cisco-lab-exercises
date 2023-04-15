@@ -209,6 +209,18 @@ R2#
 - eg: 3 hop of 100 Mbps link each is preferred over 2 hop of 10 Mbps link each
 
 ## IS-IS
+```
+R2(config)# router isis
+R2(config-router)# network 49.0001.0000.0000.0002.00
+R2(config-router)# interface f0/0
+R2(config-if)# ip router isis
+R2(config-if)# interface f1/0
+R2(config-if)# ip router isis
+R2(config-if)# interface f2/0
+R2(config-if)# ip router isis
+R2(config-if)# interface f3/0
+R2(config-if)# ip router isis
+```
 - IS-IS Metric Cost is not automatically derived from interface bandwidth. All links have an equal cost by default
 - Can manually configure the cost of links to manipulate path
 - If you don't manually set the cost of links, then path with the lowest hop count will be used.
