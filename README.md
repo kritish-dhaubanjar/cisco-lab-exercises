@@ -519,3 +519,35 @@ SW(config)# interface range FastEthernet 0/3 - 5
 SW(config-if)# switchport mode access
 SW(config-if)# switchport access vlan 10
 ```
+
+### VLAN Trunk Ports
+- Link between switches **Dot1Q Trunk**
+- An access port carries traffic for one specific VLAN
+- Dot1Q Trunks are configured on the links between switches where we need to carry traffic for multiple VLANs
+- ISL (Inter-Switch Link) was a Cisco Proprietary trunking protocol which is now obsolete
+- When the switch forwards traffic to another switch, it tags the layer 2 Dot1Q header with correct VLAN
+- Receiving switch will only forward the traffic out ports that are in that VLAN
+- The switch removes the Dot1Q tag from the Ethernet frame when it sends to the end host
+
+![image](https://user-images.githubusercontent.com/25634165/232247460-d32784cc-7a81-42b0-91c0-a748389e4396.png)
+
+```
+SW(config)# interface FastEthernet 0/1
+SW(config-if)# switchport trunk encapsulation dot1q
+SW(config-if)# switchport mode trunk
+SW(config-if)# switchport mode trunk native vlan 404
+```
+
+The Native VLAN is vlan 1, to assign to any traffic which comes in untagged on a trunk port, but for security, beset practice is to change it to an ununsed VLAN. The native VLAN must match on both switch.
+
+For Voice VLAN Configuration (Access for/instead Trunk)
+```
+SW(config)# interface FastEthernet 0/1
+SW(config-if)# switchport mode access
+SW(config-if)# switchport access vlan 10
+SW(config-if)# switchport voice vlan 20
+```
+
+
+
+
