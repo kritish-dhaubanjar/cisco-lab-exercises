@@ -188,6 +188,21 @@ show ip rip database
 - RIPv1 updates are send every 30 seconds as broadcast traffic, RIPv2 uses multicast address 224.0.0.9
 - RIPv1 doesn't support authentication, RIPv2 does.
 
+#### Auto-Summary
+- RIP will automatically summarize routes to classful boundary by default
+- For example, 192.168.10.1/30 will be advertised as 192.168.10.0/24
+- 172.16.10.1/30 will be advertised as 127.16.0.0/16
+
+Hence:
+```
+R2(config)# router rip
+R2(config-router)# no auto-summary
+R2(config-router)# interface f1/0
+R2(config-if)# ip summary-address rip 10.0.0.0 255.255.0.0
+```
+
+![image](https://user-images.githubusercontent.com/25634165/232237317-1dc3339c-1ccf-4e53-bdfc-caf74e49cd6c.png)
+
 ## Dynamic Routing Protocols
 ![image](https://user-images.githubusercontent.com/25634165/231264821-70813062-7506-4970-a7e3-119a5fc7cb15.png)
 
