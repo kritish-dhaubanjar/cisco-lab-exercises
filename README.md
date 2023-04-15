@@ -287,3 +287,10 @@ C       10.0.0.0 is directly connected, Serial2/0
 C       10.0.1.0 is directly connected, Serial3/0
 O       10.0.2.0 [110/128] via 10.0.1.2, 01:18:28, Serial3/0
 ```
+
+#### Floating Static Routes - OSPF
+We can change the AD of static route to make it act as the backup (rather than the preferred) route
+eg: AD = 115
+```
+R2(config)# ip route 10.0.1.0 255.255.255.0 10.1.3.2 115
+```
