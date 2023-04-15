@@ -180,3 +180,25 @@ show ip rip database
 ## Dynamic Routing Protocols
 ![image](https://user-images.githubusercontent.com/25634165/231264821-70813062-7506-4970-a7e3-119a5fc7cb15.png)
 
+## OSPF
+![image](https://user-images.githubusercontent.com/25634165/232225111-4e92fe00-9e5f-4396-9189-5ef1f835f9a9.png)
+
+```
+R2(config)# router ospf 1
+R2(config-router)# network 10.0.0.0 0.255.255.255 area 1
+R2(config-router)# end
+R2# show ip ospf database 
+            OSPF Router with ID (10.0.1.1) (Process ID 1)
+
+                Router Link States (Area 1)
+
+Link ID         ADV Router      Age         Seq#       Checksum Link count
+10.0.2.2        10.0.2.2        1327        0x80000002 0x00136f 2
+10.0.2.1        10.0.2.1        602         0x80000004 0x00a01f 4
+10.0.1.1        10.0.1.1        566         0x80000004 0x0013b4 4
+10.0.0.1        10.0.0.1        566         0x80000002 0x00eba2 2
+R2#
+```
+
+
+
