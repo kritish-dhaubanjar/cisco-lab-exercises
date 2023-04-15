@@ -248,3 +248,42 @@ R2(config-router)# network 10.0.0.0 0.255.255.255
 R2(config)# ip route 10.0.1.0 255.255.255.0 10.1.1.2
 R2(config)# ip route 10.0.1.0 255.255.255.0 10.1.3.2
 ```
+
+## Administrative Distance
+RIP: A>B>C>D hop count of 3, A>B>D has hop count of 2, so A>B>D is preferred
+OSPF: A>B>C>D has cost of 60, A>B>D has a cost of 100, so A>B>C>D is preferred
+
+RIP hop count cannot be compared with OSPF cost of 60. The comparison is meaningless because the metrics are completely different.
+
+The Administrative Distance (AD) is a measure of how trusted the routing protocol is.
+
+| Route Source | Default AD|
+|-|-|
+|Connected Interface|0|
+|Static Route|1|
+|External BGP|20|
+|EIGRP|90|
+|OSPF|110|
+|IS-IS|115|
+|RIP|120|
+
+AD is used to choose between multiple paths learned via different routing protocols.
+
+eg: [Administrative Distance/Metric] as [110/128]
+```
+R2#show ip route 
+Codes: C - connected, S - static, I - IGRP, R - RIP, M - mobile, B - BGP
+       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area
+       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2
+       E1 - OSPF external type 1, E2 - OSPF external type 2, E - EGP
+       i - IS-IS, L1 - IS-IS level-1, L2 - IS-IS level-2, ia - IS-IS inter area
+       * - candidate default, U - per-user static route, o - ODR
+       P - periodic downloaded static route
+
+Gateway of last resort is not set
+
+     10.0.0.0/24 is subnetted, 3 subnets
+C       10.0.0.0 is directly connected, Serial2/0
+C       10.0.1.0 is directly connected, Serial3/0
+O       10.0.2.0 [110/128] via 10.0.1.2, 01:18:28, Serial3/0
+```
