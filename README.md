@@ -540,7 +540,13 @@ SW(config-if)# switchport mode trunk native vlan 404
 
 The Native VLAN is vlan 1, to assign to any traffic which comes in untagged on a trunk port, but for security, beset practice is to change it to an ununsed VLAN. The native VLAN must match on both switch.
 
-For Voice VLAN Configuration (Access for/instead Trunk)
+**Allowed VLAN Config:**
+```
+SW1(config)# interface FastEthernet 0/1
+SW1(config-if)# switchport trunk allowed vlan 10,30
+```
+
+**For Voice VLAN Configuration (Access for/instead Trunk)**
 ```
 SW(config)# interface FastEthernet 0/1
 SW(config-if)# switchport mode access
