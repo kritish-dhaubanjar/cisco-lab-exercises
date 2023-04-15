@@ -236,3 +236,9 @@ R2(config-router)# network 10.0.0.0 0.255.255.255
 - (Load & reliability can also be considered but ignored by default)
 - A fixed delay value is used based on interface bandwidth, this protocol doesn't dynamically measure current delay
 - Can manually configure the delay of links to manipulate path
+
+## Equal Cost Multi Path (ECMP)
+- If multiple paths to a destination have an equal metric, the router will enter all of the paths into the routing table
+- Load balance the outbound traffic to the destination over the different paths
+- All IGP routing protocols will perform ECMP by default
+- EIGRP is the only routing protocol capable of UnEqual Cost Multi Path. It must be manually configured to support this.
