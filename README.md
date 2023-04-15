@@ -242,3 +242,9 @@ R2(config-router)# network 10.0.0.0 0.255.255.255
 - Load balance the outbound traffic to the destination over the different paths
 - All IGP routing protocols will perform ECMP by default
 - EIGRP is the only routing protocol capable of UnEqual Cost Multi Path. It must be manually configured to support this.
+
+### Static Routes (Load Balancing)
+```
+R2(config)# ip route 10.0.1.0 255.255.255.0 10.1.1.2
+R2(config)# ip route 10.0.1.0 255.255.255.0 10.1.3.2
+```
