@@ -236,6 +236,8 @@ Link ID         ADV Router      Age         Seq#       Checksum Link count
 R2#
 ```
 
+If you don't enter a wildcard mask, the command **will not default** to using classful boundary. (Advertisement is similar to EIGRP)
+
 - Link State Routing Protocol
 - Supports large networks
 - Fast Convergence Time
