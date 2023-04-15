@@ -270,6 +270,26 @@ If you don't enter a wildcard mask, the command **will not default** to using cl
 - Can manually configure the cost of links to manipulate path
 - eg: 3 hop of 100 Mbps link each is preferred over 2 hop of 10 Mbps link each
 
+**Areas**
+- Every Router learns the full picture of the network, causing issues in large networks:
+  - Too much router memory usage
+  - Network changes cause all routers to re-converge wasting CPU resources
+- Hierarchical design which segments large networks into smaller areas
+- Each router maintains full info about its own area, but only summary info about other areas
+
+![image](https://user-images.githubusercontent.com/25634165/232245353-2e740adf-b006-41f8-a130-f355ef4c76da.png)
+
+- A two level hierarchy:
+  - Transit area (backbone or area 0): Doesn't generally contain end users
+  - Regular Areas (non-backbone areas): Uses to connect end users to the Transit area.
+- Small networks don't require a hierarchical design, only Area 0 
+
+![image](https://user-images.githubusercontent.com/25634165/232245522-e427ea7a-cfec-4be4-bb82-07d49b059508.png)
+
+**Manual Summarization**
+![image](https://user-images.githubusercontent.com/25634165/232245610-cacbd4e9-76f8-45fb-9cd0-0ea0dab47815.png)
+
+
 ## IS-IS
 ```
 R2(config)# router isis
