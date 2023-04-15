@@ -177,6 +177,10 @@ Log:
 show ip rip database
 ```
 
+- RIP Metric = Hop Count
+- Maximum hop count is 15, paths more than 15 hops away are marked unreachable
+- eg: 2 hop of 10 Mbps link each is preferred over 3 hop of 100 Mbps link each
+
 ## Dynamic Routing Protocols
 ![image](https://user-images.githubusercontent.com/25634165/231264821-70813062-7506-4970-a7e3-119a5fc7cb15.png)
 
