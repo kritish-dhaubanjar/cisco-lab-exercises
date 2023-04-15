@@ -310,3 +310,11 @@ R2(config)# ip route 10.0.1.0 255.255.255.0 10.1.3.2 115
 - Advertise 192.168.1.1/32 in routing protocol
 - R4 learns the 2 paths to 192.168.1.1
 - PC can still connect to 192.168.1.1 even if either path goes down
+
+```
+R1(config)# interface loopback 0
+R1(config-if)# ip address 192.168.1.1 255.255.255.255
+R1(config-if)# do show running-config | sec eigrp
+R1(config-if)# router eigrp 100
+R1(config-router)# network 192.168.1.1 0.0.0.0
+```
