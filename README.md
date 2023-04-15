@@ -226,6 +226,12 @@ R2(config-if)# ip router isis
 - If you don't manually set the cost of links, then path with the lowest hop count will be used.
 
 ## EIGRP
+```
+R2(config)# router eigrp
+R2(config-router)# no auto-summary
+R2(config-router)# network 10.0.0.0 0.255.255.255
+```
+
 - EIGRP Metric Cost = Uses bandwidth + delay of links to calculate metric
 - (Load & reliability can also be considered but ignored by default)
 - A fixed delay value is used based on interface bandwidth, this protocol doesn't dynamically measure current delay
