@@ -235,6 +235,30 @@ Link ID         ADV Router      Age         Seq#       Checksum Link count
 10.0.0.1        10.0.0.1        566         0x80000002 0x00eba2 2
 R2#
 ```
+
+- Link State Routing Protocol
+- Supports large networks
+- Fast Convergence Time
+- Messages are sent using multicast
+- Open Standard Protocol
+- Uses Dijkstra's Shortest Path First algorithm
+
+**Operations**
+1. Discover Neighbours
+2. Form Adjacencies
+3. Flood Link State Database (LSDB)
+4. Compute Shortest Path
+5. Install best routes in routing table
+6. Respond tp network changes
+
+**OSPF Packet Types**
+- **Hello:** A router will send out and listen for Hello packets when OSPF is enabled on an interface, and form adjacencies with other OSPF routers
+- **DBD (DataBase Description)**: Adjacent routers will tell each other the networks they know about with the DBD packets
+- **LSR (Link State Request)**: If a router is missing info about any of the networks in the received DBD, it will send the neighbour an LSR
+- **LSA (Link State Advertisement)**: A routing update
+- **LSU (Link State Update)**: Contains a list of LSA's which should be updated used during flooding
+- **LSAck**: Receiving routers acknowledge LSAs
+
 **Metric**
 - OSPF Metric Cost = Interface Bandwidth (by default)
 - Can manually configure the cost of links to manipulate path
@@ -303,7 +327,7 @@ R1(config-router)# network 10.0.2.1 0.0.0.0
 - Fast Convergence Time
 - Supports bounded updates, where network topology change updates are only sent to routes affected by the change
 - Messages are sent using multicast
-- Automatically poerform equal cost load balancing on up to 4 paths by default, max 16 paths
+- Automatically perform equal cost load balancing on up to 4 paths by default, max 16 paths
 - EIGRP is the only routing protocol capable of UnEqual Cost Multi Path. It must be manually configured to support this.
 
 **EIGRP Router ID**
