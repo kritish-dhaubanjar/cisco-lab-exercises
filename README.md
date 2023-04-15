@@ -294,3 +294,19 @@ eg: AD = 115
 ```
 R2(config)# ip route 10.0.1.0 255.255.255.0 10.1.3.2 115
 ```
+
+## Loopback Interface
+- Logical interfaces
+- Assign IP address to router or L3 Switch, which is not tied to a physical interface
+- Cannot be physically in the same subnet as other devices, so they are usually assigned a /32 subnet mask to avoid wasting IP addresses
+- Loopback is commonly used for traffic that terminates on router itself. eg: Management Traffic, VoIP, BGP etc
+- Provides redundancy if there are multiple paths to the router
+- Also used to identify the router in OSPF
+- Multiple loopbacks can be configured, not common
+
+![image](https://user-images.githubusercontent.com/25634165/232230508-683f3bd4-99f1-4caa-8bbe-895b73dc465a.png)
+
+- Add interface loopback 0 with IP Address 192.168.1.1/32
+- Advertise 192.168.1.1/32 in routing protocol
+- R4 learns the 2 paths to 192.168.1.1
+- PC can still connect to 192.168.1.1 even if either path goes down
