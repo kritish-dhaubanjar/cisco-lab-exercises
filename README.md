@@ -298,12 +298,6 @@ R1(config-router)# network 10.0.1.1 0.0.0.0
 R1(config-router)# network 10.0.2.1 0.0.0.0
 ```
 
-**Metric**
-- EIGRP Metric Cost = Uses bandwidth + delay of links to calculate metric
-- (Load & reliability can also be considered but ignored by default)
-- A fixed delay value is used based on interface bandwidth, this protocol doesn't dynamically measure current delay
-- Can manually configure the delay of links to manipulate path
-
 - Advance Distance Vector Routing Protocol
 - Supports large networks
 - Fast Convergence Time
@@ -311,6 +305,12 @@ R1(config-router)# network 10.0.2.1 0.0.0.0
 - Messages are sent using multicast
 - Automatically poerform equal cost load balancing on up to 4 paths by default, max 16 paths
 - EIGRP is the only routing protocol capable of UnEqual Cost Multi Path. It must be manually configured to support this.
+
+**Metric**
+- EIGRP Metric Cost = Uses bandwidth + delay of links to calculate metric
+- (Load & reliability can also be considered but ignored by default)
+- A fixed delay value is used based on interface bandwidth, this protocol doesn't dynamically measure current delay
+- Can manually configure the delay of links to manipulate path
 
 ## Equal Cost Multi Path (ECMP)
 - If multiple paths to a destination have an equal metric, the router will enter all of the paths into the routing table
