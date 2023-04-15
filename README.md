@@ -261,6 +261,8 @@ If you don't enter a wildcard mask, the command **will not default** to using cl
 - **LSU (Link State Update)**: Contains a list of LSA's which should be updated used during flooding
 - **LSAck**: Receiving routers acknowledge LSAs
 
+**OSPF Router ID** is similar to **EIGRP Router ID**
+
 **Metric**
 - OSPF Metric Cost = Interface Bandwidth (by default)
 - Can manually configure the cost of links to manipulate path
