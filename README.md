@@ -348,3 +348,17 @@ eg: Routing protocol is not enabled on FastEthernet2/0, we don't want to send in
 Passive Interface are used on:
 - Loopback Interfaces
 - Physical interfaces where we don't want to send routing information out but we do want our itnernal devices to know about the link
+
+![image](https://user-images.githubusercontent.com/25634165/232230508-683f3bd4-99f1-4caa-8bbe-895b73dc465a.png)
+
+```
+R1(config)# interface loopback 0
+R1(config-if)# ip address 192.168.1.1 255.255.255.255
+R1(config) router rip
+R1(config-router) no auto-summary
+R1(config-router) version 2
+R1(config-router) passive-interface loop0
+R1(config-router) passive-interface f2/0
+R1(config-router) network 192.168.1.1
+R1(config-router) network 10.0.0.0
+```
