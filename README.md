@@ -318,3 +318,21 @@ R1(config-if)# do show running-config | section eigrp
 R1(config-if)# router eigrp 100
 R1(config-router)# network 192.168.1.1 0.0.0.0
 ```
+
+## Adjacencies & Passive Interfaces
+### Adjacencies
+- IGP routing protocols are configured under global configuration mode and then enabled on individual interfaces
+- When the routing protocol is enabled on an interface, the router will look for other devices on the link which are also running the routing protocol
+- The router does this by sending out and listening for hello packets
+- When a matching peer is found, the routers form an adjacency with each other
+- Then they exchange routing information
+- Modern routing protocol use multicast for the hello packets
+- This is more efficient than broadcast which was used by earlier protocols
+- Only routers which are running the same routing protocol will process the packet
+
+![image](https://user-images.githubusercontent.com/25634165/232231110-2b4dacf0-eefa-499d-b26b-d458f8d54cda.png)
+
+eg: Routing protocol is not enabled on FastEthernet2/0, we don't want to send internal network information to RC.
+- It will form adjacencies with any routers running the same protocol on Loopback0, FastEthernet0/0 & 1/0
+- It will not form an adjacency with RC
+- *We'll use static routes for the extranet traffic with RC*
