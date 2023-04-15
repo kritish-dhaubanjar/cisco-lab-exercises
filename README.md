@@ -177,6 +177,7 @@ Log:
 show ip rip database
 ```
 
+**Metric**
 - RIP Metric = Hop Count
 - Maximum hop count is 15, paths more than 15 hops away are marked unreachable
 - eg: 2 hop of 10 Mbps link each is preferred over 3 hop of 100 Mbps link each
@@ -234,7 +235,7 @@ Link ID         ADV Router      Age         Seq#       Checksum Link count
 10.0.0.1        10.0.0.1        566         0x80000002 0x00eba2 2
 R2#
 ```
-
+**Metric**
 - OSPF Metric Cost = Interface Bandwidth (by default)
 - Can manually configure the cost of links to manipulate path
 - eg: 3 hop of 100 Mbps link each is preferred over 2 hop of 10 Mbps link each
@@ -252,21 +253,64 @@ R2(config-if)# ip router isis
 R2(config-if)# interface f3/0
 R2(config-if)# ip router isis
 ```
+
+**Metric**
 - IS-IS Metric Cost is not automatically derived from interface bandwidth. All links have an equal cost by default
 - Can manually configure the cost of links to manipulate path
 - If you don't manually set the cost of links, then path with the lowest hop count will be used.
 
 ## EIGRP
 ```
-R2(config)# router eigrp
+R2(config)# router eigrp 100
 R2(config-router)# no auto-summary
 R2(config-router)# network 10.0.0.0 0.255.255.255
 ```
 
+`router eigrp <Autonomous System>`, meaning an independent administrative domain. EIGRP routers need to have the same AS number to peer with each other.
+
+If you don't enter a wildcard mask, the command defaults to using classful boundary.
+- 0.255.255.255 for a class A address
+- 0.0.255.255 for a class B address
+- 0.0.0.255 for a class C address
+
+CAUTION:
+![image](https://user-images.githubusercontent.com/25634165/232239736-a5093738-240a-48ab-b157-c7e0d7ddcca8.png)
+
+```
+R1(config-router)# network 10.0.0.0
+```
+Will only advertise networks
+- 10.1.0.0/24
+- 10.0.1.0/24
+- 10.0.2.0/24
+- 10.0.0.0/8 is NOT advertised
+
+Alternatively:
+```
+R1(config-router)# network 10.1.0.0 0.0.0.255
+R1(config-router)# network 10.0.1.0 0.0.0.255
+R1(config-router)# network 10.0.2.0 0.0.0.255
+```
+
+```
+R1(config-router)# network 10.1.0.1 0.0.0.0
+R1(config-router)# network 10.0.1.1 0.0.0.0
+R1(config-router)# network 10.0.2.1 0.0.0.0
+```
+
+**Metric**
 - EIGRP Metric Cost = Uses bandwidth + delay of links to calculate metric
 - (Load & reliability can also be considered but ignored by default)
 - A fixed delay value is used based on interface bandwidth, this protocol doesn't dynamically measure current delay
 - Can manually configure the delay of links to manipulate path
+
+- Advance Distance Vector Routing Protocol
+- Supports large networks
+- Fast Convergence Time
+- Supports bounded updates, where network topology change updates are only sent to routes affected by the change
+- Messages are sent using multicast
+- Automatically poerform equal cost load balancing on up to 4 paths by default, max 16 paths
+- EIGRP is the only routing protocol capable of UnEqual Cost Multi Path. It must be manually configured to support this.
 
 ## Equal Cost Multi Path (ECMP)
 - If multiple paths to a destination have an equal metric, the router will enter all of the paths into the routing table
