@@ -262,6 +262,7 @@ If you don't enter a wildcard mask, the command **will not default** to using cl
 - **LSAck**: Receiving routers acknowledge LSAs
 
 **OSPF Router ID** is similar to **EIGRP Router ID**
+
 **Default Route Injection** is similar to **RIP Default Route Injection**
 
 **Metric**
