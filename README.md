@@ -181,6 +181,13 @@ show ip rip database
 - Maximum hop count is 15, paths more than 15 hops away are marked unreachable
 - eg: 2 hop of 10 Mbps link each is preferred over 3 hop of 100 Mbps link each
 
+- It'll perform ECMP, for upto 4 paths by default
+
+#### RIPv2 vs RIPv2
+- RIPv1 doesn't send subnet mask information with routing updates, so VLSM is not supported
+- RIPv1 updates are send every 30 seconds as broadcast traffic, RIPv2 uses multicast address 224.0.0.9
+- RIPv1 doesn't support authentication, RIPv2 does.
+
 ## Dynamic Routing Protocols
 ![image](https://user-images.githubusercontent.com/25634165/231264821-70813062-7506-4970-a7e3-119a5fc7cb15.png)
 
