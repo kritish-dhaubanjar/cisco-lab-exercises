@@ -501,3 +501,21 @@ R1(config-router) passive-interface f2/0
 R1(config-router) network 192.168.1.1
 R1(config-router) network 10.0.0.0
 ```
+
+## VLAN
+- Access Ports are configured with one specific VLAN
+- Configuration is all on the switch, the end host is not VLAN aware
+- All ports are in VLAN 1 by default
+
+```
+SW1(config)# vlan 10
+SW1(config-vlan)# name VLAN_10
+
+SW(config)# interface FastEthernet 0/1
+SW(config-if)# switchport mode access
+SW(config-if)# switchport access vlan 10
+
+SW(config)# interface range FastEthernet 0/3 - 5
+SW(config-if)# switchport mode access
+SW(config-if)# switchport access vlan 10
+```
