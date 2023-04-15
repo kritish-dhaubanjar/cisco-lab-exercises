@@ -336,3 +336,15 @@ eg: Routing protocol is not enabled on FastEthernet2/0, we don't want to send in
 - It will form adjacencies with any routers running the same protocol on Loopback0, FastEthernet0/0 & 1/0
 - It will not form an adjacency with RC
 - *We'll use static routes for the extranet traffic with RC*
+- RA & RB will not learn routes to 10.0.2.0/24
+
+### Passive Interface
+- Allow you to include an IP subnet in the routing protocol without sending updates out of the interface
+- If FastEthernet2/0 is configured as a passive interface, RA & RB will learn routes to 10.0.2.0, but internal network information will not be sent to RC
+- It is best practice to configure loopback interfaces as passive interfaces
+- It is impossible to form adjacency on a loopback interface because they are not physical interfaces
+- Making loopback passive means that it will be advertised by the routing protocol, but will not waste resources sending out or listening for hello packets
+
+Passive Interface are used on:
+- Loopback Interfaces
+- Physical interfaces where we don't want to send routing information out but we do want our itnernal devices to know about the link
