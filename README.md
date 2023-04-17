@@ -554,6 +554,27 @@ SW(config-if)# switchport access vlan 10
 SW(config-if)# switchport voice vlan 20
 ```
 
+#### Dynamic Trunking Protocol DTP
+- Will form a trunk if the neighbour switch port is set to trunk or desirable.
+- Trunk will not be formed if both sides are set to auto
 
+```
+SW(config)# interface FastEthernet 0/1
+SW(config-if)# switchport mode dynamic auto
+```
+
+- Will form a trunk if the neighbour switch port is set to trunk, desirable or auto
+
+```
+SW(config)# interface FastEthernet 0/1
+SW(config-if)# switchport mode dynamic desirable
+```
+
+- Disable DTP
+
+```
+SW(config)# interface FastEthernet 0/1
+SW(config-if)# switchport nonnegotiate
+```
 
 
