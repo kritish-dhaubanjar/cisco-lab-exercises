@@ -603,3 +603,48 @@ Transparent(config-vlan)# name sales
 
 Server# show vtp status
 ```
+
+### Inter-VLAN Routing
+
+1. Router with Separate Interfaces
+![image](https://user-images.githubusercontent.com/25634165/232583231-59846fca-3315-4afa-9859-69e44451f81f.png)
+
+2. Router on a Stick
+![image](https://user-images.githubusercontent.com/25634165/232585020-c883a3d2-ac55-476a-b268-dd2aa4e58d79.png)
+
+```
+R1(config)# interface FastEthernet 0/1
+R1(config-interface)# no ip address
+R1(config-interface)# no shutdown
+
+R1(config)# interface FastEthernet 0/1.10
+R1(config-subif)# encapsulation dot1q 10
+R1(config-subif)# ip address 10.10.10.1 255.255.255.0
+
+R1(config)# interface FastEthernet 0/1.20
+R1(config-subif)# encapsulation dot1q 20
+R1(config-subif)# ip address 10.10.20.1 255.255.255.0
+
+R1(config)# ip route 0.0.0.0 0.0.0.0 203.0.113.2
+
+SW1(config)# interface FastEthernet 0/1
+SW1(config-if)# switchport trunk encapsulation dot1q 20
+SW1(config-if)# switchport mode trunk
+```
+
+3. Layer 3 Switch
+![image](https://user-images.githubusercontent.com/25634165/232587439-5ee62495-e306-4bfa-988a-1d4c513a22d1.png)
+
+```
+SW1(config)# ip routing
+SW1(config)# interface vlan 10
+SW1(config-if)# ip address 10.10.10.1 255.255.255.0
+
+SW1(config)# interface vlan 20
+SW1(config-if)# ip address 10.10.20.1 255.255.255.0
+
+SW1(config)# interface FastEthernet 0/1
+SW1(config-if)# no switchport
+SW1(config-if)# ip address 10.10.100.1 255.255.255.0
+SW1(config-if)# ip route 0.0.0.0 0.0.0.0 10.10.100.2
+```
