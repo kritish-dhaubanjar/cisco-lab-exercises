@@ -577,4 +577,29 @@ SW(config)# interface FastEthernet 0/1
 SW(config-if)# switchport nonnegotiate
 ```
 
+#### VLAN Trunking Protocol VTP
+- VTP allows to add, edit & delete VLANs on switches configured as VTP servers, and have other switches configured as VTP clients sync their VLAN database.
+- You'll still need to perform port level VLAN config on the switches
+- If both VTP & DTP are used, the VTP domain name has to match on neighbour switches for trunks to be formed by DTP
 
+**VTP Modes**
+- **VTP Server**: can add, edit or delete VLANs. A VTP server will sync its VLAN db from another server with a higher revision number
+- **VTP Client**: cannot add, edit or delete VLANs. A VTP client will sync its VLAN db from another server with a higher revision number
+- **VTP Transparent**: doesn't participate in the VTP domain. Doesn't advertise or learn VLAN information but will pass it on. Can add, eidt or delete VLANs in its own local VLAN db
+
+![image](https://user-images.githubusercontent.com/25634165/232580557-ddd47a17-8ef1-47f1-86aa-ed5f6f13787c.png)
+
+```
+Server(config)# vtp domain CardboardBox
+Server(config)# vtp mode server
+
+Client(config)# vtp domain CardboardBox
+Client(config)# vtp mode client
+Client(config)# ! cannot add VLAN if VTP client
+
+Transparent(config)# vtp mode transparent
+Transparent(config)# vlan 20
+Transparent(config-vlan)# name sales
+
+Server# show vtp status
+```
