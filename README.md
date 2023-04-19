@@ -648,3 +648,20 @@ SW1(config-if)# no switchport
 SW1(config-if)# ip address 10.10.100.1 255.255.255.0
 SW1(config-if)# ip route 0.0.0.0 0.0.0.0 10.10.100.2
 ```
+
+
+### DHCP (Dynamic Host Configuration Protocol)
+1. Cisco DHCP Server Configuration
+
+```
+R1(config)# ip dhcp excluded-address 10.10.10.1 10.10.10.10
+R1(config)# ip dhcp pool 10.10.10.0_Clients
+R1(dhcp-config)# network 10.10.10.0 255.255.255.0
+R1(dhcp-config)# default-router 10.10.10.1
+R1(dhcp-config)# dns-server 10.10.20.10
+
+R1# show ip dhcp pool
+R1# show ip dhcp binding
+```
+
+
