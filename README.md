@@ -725,4 +725,29 @@ R1# show ip nat translation
 
 ![image](https://user-images.githubusercontent.com/25634165/233162248-dcd37dd8-68cc-4e5b-a968-4e0e72bc0388.png)
 
+#### Dynamic NAT
+- 203.0.113.4 - 203.0.113.14 remain available
+- The hosts in 10.0.2.0/24 don't need to accept incoming connections so they don't need a fixed public IP address with static NAT.
+- They do need outbound connectivity to internet so need to be translated to public IP address
+- The 1st host to send traffic out will be translated to 203.0.113.4, the second host to 203.0.113.5 etc (like FIFO) up to end of the pool (203.0.113.14)
+- With Standard dynamic NAT, you need a public IP address for every host which needs to communicate with the outside
+- If you've 20 hosts, you need 30 public IP address
+- The hosts would have to await for existing connections to be torn down and the translations to be released back into the pool when they timeout
 
+```
+R1(config)# int f0/0
+R1(config-if)# ip nat outside
+
+R1(config)# int f2/0
+R1(config-if)# ip nat inside
+
+R1(config)#! Configure the pool of global addresses
+R1(config)# ip nat pool CarboardBox 203.0.113.4 203.0.113.14 netmask 255.255.255.240
+
+R1(config)#! Create an access list which references the internal IP addresses we want to translate
+R1(config)# access-list 1 permit 10.0.2.0 0.0.0.255
+
+R1(config)#! Associate the access list with the NAT pool to complete the configuration
+R1(config)# ip nat inside source list 1 pool CardboardBox
+
+```
