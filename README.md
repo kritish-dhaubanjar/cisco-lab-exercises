@@ -713,3 +713,16 @@ R1(config)# ip nat inside source static 10.0.1.10 203.0.113.3
 
 R1# show ip nat translation
 ```
+
+#### NAT Definations (from R1's perspective)
+- Inside Local Address: IP address actually configured on the inside host's OS (10.0.1.10)
+- Inside Global Address: NAT'd address of the inside host as it will be reached by the outside network (203.0.113.3)
+- Outside Local Adddress: IP address of outside host as it appears to the inside network (203.0.113.20)
+- Outside Global address: IP address assigned to the host on the outside network by the host's owner (203.0.113.20)
+
+**Outside Local Adddress vs Outside global address**
+![image](https://user-images.githubusercontent.com/25634165/233162156-3136fec7-14f4-489f-b799-bd86a8c983cd.png)
+
+![image](https://user-images.githubusercontent.com/25634165/233162248-dcd37dd8-68cc-4e5b-a968-4e0e72bc0388.png)
+
+
