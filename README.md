@@ -664,4 +664,13 @@ R1# show ip dhcp pool
 R1# show ip dhcp binding
 ```
 
+2. External DHCP Server Configuration
+
+![image](https://user-images.githubusercontent.com/25634165/233151884-5d850b50-c729-4422-bbec-0f65717ec0e8.png)
+
+```
+R1(config)# interface f0/1
+R1(config-if)# ip helper-address 10.10.20.10
+```
+
 
