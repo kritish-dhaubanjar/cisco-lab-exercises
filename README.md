@@ -673,4 +673,12 @@ R1(config)# interface f0/1
 R1(config-if)# ip helper-address 10.10.20.10
 ```
 
+#### Cisco Router as a DHCP Client
+```
+R1(config)# interface f0/0
+R1(config-if)# ip address dhcp
+R1(config-if)# no shutdown
+
+R1# show dhcp lease
+```
 
