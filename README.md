@@ -755,3 +755,28 @@ R1# show ip nat statistics
 R1# clear ip nat translation
 R1# clear ip nat translation *
 ```
+
+#### PAT (Port Address Translation)
+- Dynamic NAT with Overload (uses PAT): When Public IP runs out from pool, use the same public IP with different port
+- When return traffic is sent back, the router checks the destination port number to see which host to forward it to
+
+![image](https://user-images.githubusercontent.com/25634165/233169075-639a5000-5c21-4e89-b412-fcfb9df2b81c.png)
+
+![image](https://user-images.githubusercontent.com/25634165/233169101-d1098371-af60-425c-b236-aa1e3ccdf497.png)
+
+```
+R1(config)# int f0/0
+R1(config-if)# ip nat outside
+
+R1(config)# int f2/0
+R1(config-if)# ip nat inside
+
+R1(config)#! Configure the pool of global addresses
+R1(config)# ip nat pool CarboardBox 203.0.113.4 203.0.113.14 netmask 255.255.255.240
+
+R1(config)#! Create an access list which references the internal IP addresses we want to translate
+R1(config)# access-list 1 permit 10.0.2.0 0.0.0.255
+
+R1(config)#! Associate the access list with the NAT pool to complete the configuration
+R1(config)# ip nat inside source list 1 pool CardboardBox overload
+```
