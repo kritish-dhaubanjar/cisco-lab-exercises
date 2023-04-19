@@ -682,3 +682,34 @@ R1(config-if)# no shutdown
 R1# show dhcp lease
 ```
 
+### NAT (Network Address Translation)
+- **Static NAT**: permanent 1-1 mapping usually between a public and private IP address. Used for servers which must accept incoming connections.
+
+- **Dynamic NAT**: uses a pool of public addresses which are given out on an as needed first come first served basis. Usually for internal hosts which needs to connect to the internet but don ot accept incoming connections.
+
+- **PAT (Port Address Translation)**: allows same public IP address to be reused.
+
+#### Static NAT
+![image](https://user-images.githubusercontent.com/25634165/233157363-e391d507-f6e2-4594-a1e9-f9c9e103d0b0.png)
+
+- f0/0 is outside interface
+- f1/0 is inside interface
+- We've bought the range of public ip address 203.0.113.0/28 from ISP
+- 203.0.113.2 is used on f0/0 (R1)
+- 203.0.113.1 is the default gateway address (SP1)
+- 203.0.113.3 - 203.0.113.14 remain available
+- We need to assign a fixed public IP (203.0.113.3) to accept incoming connections.
+- A static NAT translation is required to translate public IP address 203.0.113.3 on f0/0 to 10.0.1.10 on F1/0 for incoming connections
+- The translation is bidirectional so will also translate 10.0.1.10 to 203.0.113.3 for outbound traffic from the server
+
+```
+R1(config)# int f0/0
+R1(config-if)# ip nat outside
+
+R1(config)# int f1/0
+R1(config-if)# ip nat inside
+
+R1(config)# ip nat inside source static 10.0.1.10 203.0.113.3
+
+R1# show ip nat translation
+```
