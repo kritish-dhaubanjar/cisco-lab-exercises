@@ -780,3 +780,19 @@ R1(config)# access-list 1 permit 10.0.2.0 0.0.0.255
 R1(config)#! Associate the access list with the NAT pool to complete the configuration
 R1(config)# ip nat inside source list 1 pool CardboardBox overload
 ```
+
+##### PAT with Single IP Address
+```
+R1(config)# int f0/0
+R1(config-if)# ip address dhcp
+R1(config-if)# ip nat outside
+
+R1(config)# int f2/0
+R1(config-if)# ip nat inside
+
+R1(config)#! Create an access list which references the internal IP addresses we want to translate
+R1(config)# access-list 1 permit 10.0.2.0 0.0.0.255
+
+R1(config)#! Associate the access list with the outside interface to complete the configuration
+R1(config)# ip nat inside source list 1 interface f0/0 overload
+```
