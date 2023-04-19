@@ -750,4 +750,8 @@ R1(config)# access-list 1 permit 10.0.2.0 0.0.0.255
 R1(config)#! Associate the access list with the NAT pool to complete the configuration
 R1(config)# ip nat inside source list 1 pool CardboardBox
 
+R1# show ip nat translation
+R1# show ip nat statistics
+R1# clear ip nat translation
+R1# clear ip nat translation *
 ```
